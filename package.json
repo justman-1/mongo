@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
+  },
+  "name": "df",
+  "version": "1.0.0",
+  "description": "df",
+  "main": "js.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node js.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
