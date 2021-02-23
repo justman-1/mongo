@@ -1,4 +1,5 @@
 let mongo = require('./mongo')
+let MongoClient = require("mongodb").MongoClient
 let mongoClient = new MongoClient('mongodb+srv://user1:user@example.7j3yd.mongodb.net/admin?retryWrites=true&w=majority',  {useNewUrlParser: true, useUnifiedTopology: true})
 let connectToMongoDb = async () => {
 	await mongo().then(MongoClient => {
