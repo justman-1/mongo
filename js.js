@@ -1,6 +1,14 @@
-let MongoClient = require('mongodb').MongoClient
-let mongoClient = new MongoClient('mongodb://localhost:27017', { useUnifiedTopology: true })
-
+let mongo = require('./mongo')
+let connectToMongoDb = async () => {
+	await mongo().then(MongoClient => {
+		try{
+			console.log('Connected to mongoDB!')
+		} finally{
+			console.log("ok")
+		}
+	})
+}
+connectToMongoDb()
 let express = require("express")
 let app = express()
 
@@ -20,7 +28,7 @@ app.post('/send', urlencodedParser, function(req, res){
 	res.sendFile(__dirname + '/index.html')
 	let data = {word: req.body.data}
 
-	mongoClient.connect(function(err, client){
+	mongo.connect(function(err, client){
 		if(err){
 			console.log('Error 1111111:' + err)
 		}
@@ -42,7 +50,7 @@ app.post('/delete', urlencodedParser, function(req, res){
 	res.sendFile(__dirname + '/index.html')
 	let data = req.body.data
 	console.log(data)
-	mongoClient.connect(function(err, client){
+	mongo.connect(function(err, client){
 		if(err){
 			console.log(err)
 		}
@@ -55,7 +63,7 @@ app.post('/delete', urlencodedParser, function(req, res){
 })
 app.get('/show', function(req, res){
 
-	mongoClient.connect(function(err, client){
+	mongo.connect(function(err, client){
 		if(err){
 			console.log(err)
 		}
