@@ -1,4 +1,5 @@
 let mongo = require('./mongo')
+let mongoClient = new MongoClient('mongodb+srv://user1:user@example.7j3yd.mongodb.net/admin?retryWrites=true&w=majority',  {useNewUrlParser: true, useUnifiedTopology: true})
 let connectToMongoDb = async () => {
 	await mongo().then(MongoClient => {
 		try{
@@ -28,7 +29,7 @@ app.post('/send', urlencodedParser, function(req, res){
 	res.sendFile(__dirname + '/index.html')
 	let data = {word: req.body.data}
 
-	mongo.connect(function(err, client){
+	mongoClient.connect(function(err, client){
 		if(err){
 			console.log('Error 1111111:' + err)
 		}
@@ -50,7 +51,7 @@ app.post('/delete', urlencodedParser, function(req, res){
 	res.sendFile(__dirname + '/index.html')
 	let data = req.body.data
 	console.log(data)
-	mongo.connect(function(err, client){
+	mongoClient.connect(function(err, client){
 		if(err){
 			console.log(err)
 		}
@@ -63,7 +64,7 @@ app.post('/delete', urlencodedParser, function(req, res){
 })
 app.get('/show', function(req, res){
 
-	mongo.connect(function(err, client){
+	mongoClient.connect(function(err, client){
 		if(err){
 			console.log(err)
 		}
